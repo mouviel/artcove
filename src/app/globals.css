@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f3f5f8;
+  --color-sheet: #ffffff;
+  --color-graphite: #212227;
+  --color-pencil: #676b75;
+  --color-rule: #dde1e8;
+  --color-blue: #3e96db;
+  --color-blue-ink: #1f6fb2;
+  --color-blue-light: #c9e3f6;
+  --color-red: #e03e57;
+  --color-red-ink: #c42a43;
+  --color-marker: #ffd84d;
+
+  --font-sans: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+  --font-hand: var(--font-shantell), ui-rounded, "Comic Sans MS", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-graphite);
+}
+
+::selection {
+  background: var(--color-blue-light);
+  color: var(--color-graphite);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+/* The one orchestrated moment: redline notes drawn onto the hero sketch. */
+.redline-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.redline-note {
+  opacity: 0;
+  animation: ink 0.4s ease-out forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes ink {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .redline-path,
+  .redline-note {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
