@@ -3,11 +3,16 @@ import { DownloadButton } from "@/components/DownloadButton";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import { download, isDownloadReady } from "@/lib/download";
+import { social } from "@/lib/metadata";
+
+const title = "Download artcove for Windows";
+const description = `Get artcove ${download.version}, the commission tracker for artists, on Windows 10 and 11. Install steps and system requirements.`;
 
 export const metadata: Metadata = {
-  title: "Download",
-  description: "Download artcove for Windows 10 and 11.",
+  title: { absolute: title },
+  description,
   alternates: { canonical: "/download" },
+  ...social({ url: "/download", title, description, image: "/opengraph-image" }),
 };
 
 const steps = [

@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { DownloadButton } from "@/components/DownloadButton";
 import { Faq } from "@/components/Faq";
 import { Flow } from "@/components/Flow";
 import { Footer } from "@/components/Footer";
 import { HeroWindow } from "@/components/HeroWindow";
+import { JsonLd } from "@/components/JsonLd";
 import { Nav } from "@/components/Nav";
+import { social } from "@/lib/metadata";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  ...social({ url: "/" }),
+};
 
 const pile = [
   "the DM from March with the refs in it",
@@ -40,6 +48,7 @@ function Strike({ variant }: { variant: number }) {
 export default function Home() {
   return (
     <>
+      <JsonLd />
       <Nav />
       <main>
         <section className="mx-auto grid max-w-[1200px] items-center gap-14 px-4 pt-14 pb-24 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-14 lg:pt-24 lg:pb-32">

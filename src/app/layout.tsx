@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Familjen_Grotesk, Shantell_Sans } from "next/font/google";
+import { social } from "@/lib/metadata";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -17,20 +18,14 @@ const shantell = Shantell_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name}: ${site.tagline}`,
+    default: site.seoTitle,
     template: `%s | ${site.name}`,
   },
   description: site.description,
-  openGraph: {
-    type: "website",
-    siteName: site.name,
-    url: site.url,
-    title: `${site.name}: ${site.tagline}`,
-    description: site.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-  },
+  applicationName: site.name,
+  keywords: ["commission tracker", "art commissions", "commission queue", "artist invoice", "Discord commissions", "Windows app"],
+  // Fallback for pages without their own; pages call social() with their url.
+  ...social({ url: "/" }),
 };
 
 export const viewport: Viewport = {
